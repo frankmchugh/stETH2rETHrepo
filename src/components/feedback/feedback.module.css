@@ -11,14 +11,14 @@
 .container > form {
     height: auto;
 
-    width: 50%;
-    border-radius: 10px;
+    width: auto;
+    border-radius: 20px;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 3vh 0;
+    padding: 3vh 2vw;
     gap: 2rem;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
     border: 0.5px solid #222;

@@ -27,7 +27,11 @@ import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Qu
 
 
 
-const Table = ({ onDataFromChild }) => {
+const Table = ({ onDataFromChild, resetFunction }) => {
+
+
+
+
 
 
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -36,17 +40,6 @@ const Table = ({ onDataFromChild }) => {
   const [rebateTotal, setRebateTotal] = useState(0)
   const [USDCquote, setUSDCquote] = useState<number>(0)
   const [newTransactions, setNewTransactions] = useState<Array<Log>>([]);
-
-
-
-  const client = createPublicClient({
-    chain: mainnet,
-    transport: http(`https://mainnet.infura.io/v3/${apiKey}`)
-  });
-
-
-
-
 
 
 
@@ -132,6 +125,7 @@ const Table = ({ onDataFromChild }) => {
           // You can perform further operations with the data here
 
           setNewTransactions(data);
+       
         } else {
           console.log('No data retrieved from the API.');
         }
@@ -142,10 +136,30 @@ const Table = ({ onDataFromChild }) => {
   }
 
 
-  useEffect(() => {
-    apiFunction();
 
-  }, [])
+
+  useEffect(() => {
+
+  
+      apiFunction();
+
+  
+
+  }, [resetFunction])
+
+ 
+
+
+
+
+  useEffect(() => {
+
+    if(resetFunction ===  true) {
+      getEvents();
+
+    }
+
+  }, [newTransactions])
 
 
 
@@ -308,6 +322,7 @@ const Table = ({ onDataFromChild }) => {
   interface Log {
     eventName: string
     txHash: string
+    sender: string
     args: {
       ETH: string
       stETH: string
@@ -436,7 +451,8 @@ const Table = ({ onDataFromChild }) => {
           <th>Estimated Rebate</th>
           <th>Transaction Cost</th>
 
-          <th>Date:</th>
+          <th>Date</th>
+          <th>Sender</th>
           <th>Transaction Hash</th>
 
 
@@ -467,11 +483,9 @@ const Table = ({ onDataFromChild }) => {
             <td>{roundToFiveDecimalPlaces(wei(Number(trans.gasPrice) * Number(trans.gasUsed)))}</td>
 
             <td>{convertTimestampToDate(trans.timestamp)}</td>
-
-            <td>
-
-              {trans.txHash}
-            </td>
+            <td>{trans.sender}</td>
+            <td>{trans.txHash}</td>
+            
 
 
           </tr>

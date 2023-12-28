@@ -51,6 +51,24 @@ function App() {
 
 
 
+  
+
+  const [resetFunc, setResetFunc] = useState(false)
+
+  const handleChildAction = () => {
+    // Do something when the child action is triggered
+ 
+    triggerChildAction();
+    
+  };
+
+
+  const triggerChildAction = () => {
+    // Do something in the parent component
+    setResetFunc(true);
+  };
+
+
 
 
 
@@ -63,6 +81,7 @@ function App() {
   const handleDataFromChild = (data) => {
     // Do something with the data received from the child
     setDataFromChild(data);
+    
   };
 
 
@@ -79,7 +98,7 @@ function App() {
 
 
 
-      <Main TOTAL1={dataFromChild} onClickFunc={handleScroll} />
+      <Main TOTAL1={dataFromChild} onClickFunc={handleScroll} onChildAction={handleChildAction} />
 
 
 
@@ -106,7 +125,7 @@ function App() {
 
       <div style={dataFromChild === 0 ? { display: "none" } : { display: "flex" }} className="tableCont">
 
-        <Table onDataFromChild={handleDataFromChild} />
+        <Table onDataFromChild={handleDataFromChild} resetFunction={resetFunc}/>
 
 
 

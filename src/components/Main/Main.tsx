@@ -52,7 +52,7 @@ const override: CSSProperties = {
 
 
 
-function Main({ TOTAL1,   onClickFunc  }) {
+function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
     const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -871,6 +871,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
         setTimeForEstimates(false);
         fetchData();
         getQuoute();
+        onChildAction();
         getBaseFee();
         setDepositPeriod(false);
 
@@ -1461,7 +1462,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
 
-   /* const handleFakestETH = async () => {
+  /*  const handleFakestETH = async () => {
 
 
 
@@ -1533,12 +1534,13 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
         } else {
 
-            setBalanceBoolstETH(false);
+            
 
             if (stETHChecked) {
 
-                if (!depositSuccess) {
+                if ( !depositPeriod) {
                     setErrorMessage("You have insufficient stETH.")
+                    setBalanceBoolstETH(false);
 
                     setTimeForEstimates(false);
                     setApproved(false);
@@ -1609,10 +1611,13 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
                 } else {
 
+                    if(!depositPeriod) {
                     setErrorMessage2("You have insufficient ETH.")
+                   
                     setApproved(false)
                     setTimeForEstimates(false)
                     setBalanceBoolETH(false);
+                    }
 
                 }
 
@@ -1823,6 +1828,10 @@ function Main({ TOTAL1,   onClickFunc  }) {
                     setApproved(false);
                     setNewTransactionBool(true);
                     setDepositSuccess(true);
+
+
+                    setTimeout(onChildAction, 4000);
+                   
                     getrETHBalance();
                     balanceCheck();
                     balanceCheckStETH();
@@ -2525,7 +2534,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
                     {(!account) &&
                         (
 
-                            <button onClick={connect}>Connect Wallet</button>
+                            <button className="connect"  onClick={connect}>Connect Wallet</button>
 
                         )
 
@@ -2538,7 +2547,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
 
-            {/*             <button className="foundry" onClick={getFoundry}>CONNECT FOUNDRY</button>
+            {/*         <button className="foundry" onClick={getFoundry}>CONNECT FOUNDRY</button>
                     <button className="fakestETH" onClick={handleFakestETH}>Fund Test Account</button> */}
 
 
@@ -2548,7 +2557,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
                 </div>
-                <div className="box">
+              { (account) && ( <div className="box">
 
                     <h3>Trade your ETH and/or stETH</h3>
 
@@ -2576,7 +2585,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
                                 <h5> <span>Value of stETH:</span></h5>
-                                <input value={stETHstring} onChange={(e) => handleStETH(e.target.value)
+                                <input value={stETHstring} className="marginPut" onChange={(e) => handleStETH(e.target.value)
                                 } />
 
                             </>
@@ -2619,8 +2628,8 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
 
-                </div>
-                <div className="box">
+                </div>) }
+                { ( account ) && (   <div className="box">
 
                     <h3>{depositSuccess ? ("Final receipt") : ("Estimated fees/rETH ")}</h3>
 
@@ -2826,7 +2835,7 @@ function Main({ TOTAL1,   onClickFunc  }) {
 
 
 
-                </div>
+                </div> )}
 
 
 
