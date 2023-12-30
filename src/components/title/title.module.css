@@ -14,7 +14,7 @@
 
 .container > h2 {
     font-weight: 400;
-    font-size: 80px;
+    font-size: 65px;
     width: 100%;
     background: #edf0f0;
     text-align: center;
@@ -104,6 +104,15 @@
 
 
   @media (max-width: 600px) {
+
+    .container > h2 {
+   
+        font-size: 35px;
+        
+    
+       
+    
+    }
 
     .container > p {
 

@@ -30,7 +30,7 @@ td, th {
     padding: 1vw;
    
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     border: 0!important;
     margin: 0!important;
     white-space: nowrap;
@@ -54,6 +54,21 @@ th {
 .specialTD {
     color: rgb(21, 149, 77);
     font-weight: 500;
+}
+
+
+.link > a {
+    text-decoration: none;
+    color: rgb(30, 132, 124);
+    font-weight: 500;
+    
+    transition: all 0.1s ease-in-out;
+}
+
+.link > a:hover {
+    color: rgb(107, 195, 188);
+    cursor: pointer;
+
 }
 
 

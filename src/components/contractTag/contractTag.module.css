@@ -2,6 +2,7 @@
   height: auto;
   width: 100%;
   padding: 2vh 0;
+  margin-top: 2vh;
   display: flex;
   align-items: center;
   font-size: 17px;
@@ -16,7 +17,7 @@
   gap: 1rem;
 
   width: auto;
-  font-weight: 300;
+  color: #333;
 
 }
 
@@ -24,7 +25,7 @@
   border: 0;
   background-color: transparent;
   font-size: 17px;
-  font-weight: 200;
+ 
 
 
 

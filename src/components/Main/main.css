@@ -18,7 +18,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 1.5rem;
-    padding: 2vh 0;
+    padding-top: 2vh;
 
     
   
@@ -72,7 +72,7 @@
  
   
   .box >  h3 {
-    font-size: 30px;
+    font-size: 27px;
     text-align: center;
     width: 80%;
     
@@ -83,11 +83,11 @@
   .box > input  {
     font-size: 20px;
     font-weight: 300;
-    width: 80%;
+    width: 70%;
   }
 
   .box >  h5 {
-    font-size: 20px;
+    font-size: 19px;
     text-align: center;
     font-weight: 300;
     word-wrap: break-word;
@@ -98,7 +98,7 @@
 
 
   .box1 >  h5 {
-    font-size: 20px;
+    font-size: 19px;
     text-align: center;
     font-weight: 300;
    
@@ -204,8 +204,8 @@
   padding: 10px;
   transition: all 0.2s ease-in-out;
   border: 0px;
-  margin: 3vh 0;
-  margin-top: 0.5vh;
+  margin: 1vh 0;
+  
   border-radius: 20px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   width: 18%;
@@ -370,8 +370,8 @@
 
   .error {
     font-size: 24px;
-    padding: 0.5vh 0;
-    padding: 5vh;
+    padding: 3vh 0;
+   
     height:auto;
     width: 80%;
     font-weight: 600;

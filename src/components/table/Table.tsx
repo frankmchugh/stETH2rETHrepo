@@ -443,7 +443,7 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
 
-          <th>Event Type</th>
+        
           <th>Ethereum</th>
           <th>stETH</th>
           <th>rETH </th>
@@ -469,7 +469,7 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
 
-            <td style={trans.eventName === "Deposit" ? { backgroundColor: "#f8ec85" } : { backgroundColor: "rgb(30, 132, 124)", color: "white" }} id="eventName">{trans.eventName}</td>
+           
             <td>{roundToFiveDecimalPlaces(wei(trans.args["ETH"]))}</td>
             <td>{trans.eventName === "Deposit" ? roundToFiveDecimalPlaces(wei(trans.args["stETH"])) : "N/A"}</td>
             <td >{trans.eventName === "Deposit" ? roundToFiveDecimalPlaces(wei(trans.args["rETH"])) : "N/A"}</td>
@@ -483,8 +483,9 @@ const Table = ({ onDataFromChild, resetFunction }) => {
             <td>{roundToFiveDecimalPlaces(wei(Number(trans.gasPrice) * Number(trans.gasUsed)))}</td>
 
             <td>{convertTimestampToDate(trans.timestamp)}</td>
-            <td>{trans.sender}</td>
-            <td>{trans.txHash}</td>
+            <td className="link"><a href={`https://etherscan.io/address/${trans.sender}`}  rel="noreferrer"  target="_blank">{trans.sender}</a></td>
+            <td className="link"><a href={`https://etherscan.io/tx/${trans.txHash}`}  rel="noreferrer" target="_blank">{trans.txHash}</a></td>
+           
             
 
 
