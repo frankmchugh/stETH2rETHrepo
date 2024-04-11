@@ -40,6 +40,7 @@ const Table = ({ onDataFromChild, resetFunction }) => {
   const [rebateTotal, setRebateTotal] = useState(0)
   const [USDCquote, setUSDCquote] = useState<number>(0)
   const [newTransactions, setNewTransactions] = useState<Array<Log>>([]);
+  const [styles, setStyles] = useState({ opacity: "0" })
 
 
 
@@ -102,7 +103,7 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
       // Assuming the API response is an array of objects
       const data = await response.json();
-      console.log("This is the response:", data);
+
 
       setNewTransactions(data);
       return data;
@@ -121,11 +122,11 @@ const Table = ({ onDataFromChild, resetFunction }) => {
     await getDataFromApi(apiUrl)
       .then(data => {
         if (data) {
-          console.log('Data from the API:', data);
+
           // You can perform further operations with the data here
 
           setNewTransactions(data);
-       
+
         } else {
           console.log('No data retrieved from the API.');
         }
@@ -140,21 +141,21 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
   useEffect(() => {
 
-  
-      apiFunction();
 
-  
+    apiFunction();
+
+
 
   }, [resetFunction])
 
- 
+
 
 
 
 
   useEffect(() => {
 
-    if(resetFunction ===  true) {
+    if (resetFunction === true) {
       getEvents();
 
     }
@@ -210,7 +211,6 @@ const Table = ({ onDataFromChild, resetFunction }) => {
         CurrentConfig.tokens.amountIn,
         CurrentConfig.tokens.in.decimals
       ).toString(),
-
       0
     )
 
@@ -375,7 +375,7 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
       if (log["args"]["stETH"] !== "0") {
 
-        console.log(log.gasUsed)
+
 
         let newNum = wei((230000 * Number(log.gasPrice)) - (Number(log.gasUsed) * Number(log.gasPrice))) * USDCquote;
         total = total + newNum;
@@ -390,9 +390,6 @@ const Table = ({ onDataFromChild, resetFunction }) => {
     }
 
 
-    console.log(total);
-
-    console.log("SECOND BIT DONE");
 
 
 
@@ -413,7 +410,6 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
 
-    console.log("This is the rebateTotal" + rebateTotal)
 
 
     if (rebateTotal !== 0) {
@@ -425,6 +421,29 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
   }, [rebateTotal])
+
+
+
+  const changeStyles = () => {
+
+
+
+    setStyles({ opacity: "1" });
+    console.log("Change works!")
+
+
+
+
+
+  }
+
+  const revertStyles = () => {
+
+
+    setStyles({ opacity: "0" });
+    console.log("Revert works!")
+
+  }
 
 
 
@@ -443,10 +462,10 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
 
-        
-          <th>Ethereum</th>
+
+          <th>ETH</th>
           <th>stETH</th>
-          <th>rETH </th>
+          <th>rETH (received)</th>
 
           <th>Estimated Rebate</th>
           <th>Transaction Cost</th>
@@ -469,24 +488,114 @@ const Table = ({ onDataFromChild, resetFunction }) => {
 
 
 
-           
+
             <td>{roundToFiveDecimalPlaces(wei(trans.args["ETH"]))}</td>
             <td>{trans.eventName === "Deposit" ? roundToFiveDecimalPlaces(wei(trans.args["stETH"])) : "N/A"}</td>
             <td >{trans.eventName === "Deposit" ? roundToFiveDecimalPlaces(wei(trans.args["rETH"])) : "N/A"}</td>
 
 
             {trans.args["stETH"] !== "0" ?
-              (<td className="specialTD"> ${roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)} </td>) :
-              (<td className="specialTD"> ${roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)} </td>)
+
+
+            (
+              <>
+
+              {roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?  (
+                <td className="specialTD" style={roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ? { color: "rgb(21, 149, 77)" } : { color: "red", cursor: "pointer" }}>
+                ${roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)}
+
+                {roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?
+                  (
+                    <>
+                    </>
+                  ) :
+                  (
+                    <span className="negativeSpan" style={styles}>
+                      Negative rebates often are a result of complex transactions, Rocket Rebate should always beat DEX gas fees
+                    </span>
+                  )}
+              </td>):(<td className="specialTD" onMouseEnter={changeStyles} onMouseLeave={revertStyles} style={roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ? { color: "rgb(21, 149, 77)" } : { color: "red", cursor: "pointer" }}>
+                ${roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)}
+
+                {roundToTwoDecimalPlaces((wei((230000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?
+                  (
+                    <>
+                    </>
+                  ) :
+                  (
+                    <span className="negativeSpan" style={styles}>
+                      Negative rebates often are a result of complex transactions, Rocket Rebate should always beat DEX gas fees
+                    </span>
+                  )}
+              </td>)}
+
+              </>
+            
+            ):
+            (
+
+              <>
+
+             
+             
+             
+{roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?(
+                <td className="specialTD"  style={roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ? { color: "rgb(21, 149, 77)" } : { color: "red", cursor: "pointer" }}>
+                ${roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)}
+
+
+                {roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?
+                  (
+
+                    <>
+                    </>
+
+
+                  ) :
+                  (
+                    <span className="negativeSpan" style={styles}>
+                      Negative rebates often are a result of complex transactions, Rocket Rebate should always beat DEX gas fees
+                    </span>
+                  )}
+
+
+              </td>
+              ):(
+              <td className="specialTD" onMouseEnter={changeStyles} onMouseLeave={revertStyles} style={roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ? { color: "rgb(21, 149, 77)" } : { color: "red", cursor: "pointer" }}>
+                ${roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote)}
+
+
+                {roundToTwoDecimalPlaces((wei((117000 * Number(trans.gasPrice)) - (Number(trans.gasUsed) * Number(trans.gasPrice)))) * USDCquote) > 0 ?
+                  (
+
+                    <>
+                    </>
+
+
+                  ) :
+                  (
+                    <span className="negativeSpan" style={styles}>
+                      Negative rebates often are a result of complex transactions, Rocket Rebate should always beat DEX gas fees
+                    </span>
+                  )}
+
+
+              </td>
+              )}
+
+
+              </>
+              
+            )
             }
 
             <td>{roundToFiveDecimalPlaces(wei(Number(trans.gasPrice) * Number(trans.gasUsed)))}</td>
 
             <td>{convertTimestampToDate(trans.timestamp)}</td>
-            <td className="link"><a href={`https://etherscan.io/address/${trans.sender}`}  rel="noreferrer"  target="_blank">{trans.sender}</a></td>
-            <td className="link"><a href={`https://etherscan.io/tx/${trans.txHash}`}  rel="noreferrer" target="_blank">{trans.txHash}</a></td>
-           
-            
+            <td className="link"><a href={`https://etherscan.io/address/${trans.sender}`} rel="noreferrer" target="_blank">{trans.sender}</a></td>
+            <td className="link"><a href={`https://etherscan.io/tx/${trans.txHash}`} rel="noreferrer" target="_blank">{trans.txHash}</a></td>
+
+
 
 
           </tr>

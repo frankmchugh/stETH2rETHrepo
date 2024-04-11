@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     padding: 1.5vh 0;
-    gap: 0.5rem;
+   
   }
   
   .wrapper {
@@ -17,8 +17,8 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    gap: 1.5rem;
-    padding-top: 2vh;
+    
+    padding-top: 4vh;
 
     
   
@@ -26,7 +26,7 @@
   }
   
   .box {
-    width: 24%;
+    width: 22%;
     min-height: auto;
     height: auto;
     padding: 2vh 0;
@@ -34,7 +34,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border: 0.5px solid #222;
+    border: 0.05px solid #222;
     background: #fff;
     gap: 1.3rem;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
@@ -42,6 +42,10 @@
     font-weight: 400;
     
   
+  }
+
+  #middleBox {
+    margin: 0 2vw;
   }
 
 
@@ -52,16 +56,16 @@
     padding: 1vh 3vh;
     display: flex;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-    border: 0.5px solid #222;
+    border: 0.05px solid #222;
     align-items: center;
-    align-self: center;
+    
     justify-content: center;
     background: #ffffff;
    
   gap: 5rem;
     border-radius: 20px;
     font-weight: 400;
-    margin-bottom: 3vh;
+    margin-bottom: 1.5vh;
     
   
   }
@@ -72,7 +76,7 @@
  
   
   .box >  h3 {
-    font-size: 27px;
+    font-size: 20px;
     text-align: center;
     width: 80%;
     
@@ -81,13 +85,13 @@
   }
   
   .box > input  {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 300;
     width: 70%;
   }
 
   .box >  h5 {
-    font-size: 19px;
+    font-size: 17px;
     text-align: center;
     font-weight: 300;
     word-wrap: break-word;
@@ -96,9 +100,13 @@
     
   }
 
+  .box > h5 > span {
+    font-size: 15px;
+  }
+
 
   .box1 >  h5 {
-    font-size: 19px;
+    font-size: 15px;
     text-align: center;
     font-weight: 300;
    
@@ -112,6 +120,7 @@
   .box1 >  h5 > span {
     color: rgb(21, 149, 77);
     font-weight: 500;
+    font-size: 15px;
   }
 
 
@@ -120,6 +129,7 @@
   .box >  h5 > span {
 
   font-weight: 300;
+  font-size: 15px;
 
 
   }
@@ -129,7 +139,7 @@
     background: rgb(30, 132, 124);
     color: #fff;
     font-weight: 200;
-    font-size: 15px;
+    font-size: 11px;
     border-radius: 20px;
     text-transform: uppercase;
     padding: 12px;
@@ -175,7 +185,7 @@
   background: rgb(30, 132, 124);
   color: #fff;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 12px;
   border-radius: 20px;
   
   text-transform: uppercase;
@@ -199,12 +209,14 @@
   background: rgb(21, 149, 77);
   color: #fff;
   font-weight: 200;
-  font-size: 24px;
+  font-size: 18px;
   text-transform: uppercase;
   padding: 10px;
   transition: all 0.2s ease-in-out;
   border: 0px;
-  margin: 1vh 0;
+  margin: 4vh 0;
+
+  margin-bottom: 2vh;
   
   border-radius: 20px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
@@ -229,12 +241,14 @@
  .specialH5 {
   font-weight: 500 !important;
  color: rgb(30, 132, 124);
+ font-size: 16px !important;
  }
 
 
  .specialH5 > span {
   color: #222;
   font-weight: 300;
+  font-size: 17px;
  }
 
 
@@ -249,13 +263,15 @@
     justify-content: center;
     flex-direction: column;
     gap:1rem;
-    font-size: 19px;
+    font-size: 17px;
   }
 
 
   .balances > legend {
     font-weight: 300;
     text-align: center;
+
+    font-size: 17px;
     
     padding: 0 0.2vw;
   }
@@ -280,7 +296,7 @@
   }
 
   .modalCont > h5 {
-    font-size: 24px;
+    font-size: 22px;
     text-align: center;
     font-weight: 600;
     word-wrap: break-word;
@@ -291,7 +307,7 @@
 
 
   .modalCont > p {
-    font-size: 24px;
+    font-size: 22px;
     text-align: center;
     font-weight: 600;
     word-wrap: break-word;
@@ -369,7 +385,7 @@
 
 
   .error {
-    font-size: 24px;
+    font-size: 21px;
     padding: 3vh 0;
    
     height:auto;
@@ -384,7 +400,7 @@
   }
 
   .error2 {
-    font-size: 24px;
+    font-size: 21px;
     padding: 0.5vh 0;
     height:auto;
     width: 80%;
@@ -405,14 +421,7 @@ align-items: center;
   @media (max-width: 1750px) { 
 
 
-  .box > h3 {
-    font-size: 23px;
-  }
-  
-  .box > h5 {
-    font-size: 18px;
-    width: 70%;
-  }
+
 
 }
 
@@ -432,6 +441,8 @@ align-items: center;
       align-items: center;
       padding-bottom: 0vh;
       width: 90%;
+
+      gap: 2rem;
     }
 
 
@@ -463,6 +474,11 @@ align-items: center;
      
     }
 
+
+    .box > h3 {
+      font-size: 18px;
+    }
+
     
 
 
@@ -475,17 +491,10 @@ align-items: center;
     }
     
 
-    .box > h5 {
-      font-size: 18px;
-    }
-
-    .box1 > h5 {
-      font-size: 18px;
-      width: 90%;
-    }
+   
 
     .box > h3 {
-      font-size: 23px;
+      font-size: 20px;
     }
 
   
@@ -531,14 +540,10 @@ align-items: center;
     }
 
     .box > h3 {
-      font-size: 20px;
+      font-size: 18px;
     }
 
-    .box > button {
-      font-size: 13px;
-
-     
-    }
+   
 
 
     .buttonCont {
@@ -547,18 +552,8 @@ align-items: center;
     }
 
 
-    .buttonCont > button {
+    
 
-      font-size: 13px;
-
-
-    }
-
-    #buttonId {
-
-      font-size: 17px;
-
-    }
 
 
     .box > input {

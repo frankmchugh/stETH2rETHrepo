@@ -508,9 +508,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
         setrETHContractBalance(speshString);
 
 
-        console.log("Spesh:" + spesh);
-        console.log("rETH amount:" + rETHAmount)
-
+      
 
 
         let weirETH = wei(Number(rETHAmount));
@@ -520,7 +518,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
         if (spesh >= weirETH) {
 
 
-            console.log("AT THIS SPOT")
+      
 
 
             setErrorMessage4("")
@@ -709,7 +707,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
             setTimeForEstimates(false);
 
 
-            console.log("is ready?:" + isReadyToApprove)
+         
 
 
 
@@ -1525,7 +1523,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
             allowanceCheck();
 
-            console.log("LIKE YOU THOUGHT");
+       
 
             setBalanceBoolstETH(true)
 
@@ -1968,7 +1966,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
     useEffect(() => {
 
 
-        console.log("AND THERE!")
+  
 
 
         if (stETH !== BigInt(0)) {
@@ -2061,19 +2059,19 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
                             setValidBoolETH(true);
 
 
-                            console.log("NOW HERE");
+                        
 
 
                             if (!balanceBoolstETH) {
 
-                                setErrorMessage("You have not input a valid number")
+                                setErrorMessage("You have not input a valid number.")
 
                             }
 
 
                             if (!validBoolstETH) {
 
-                                setErrorMessage("You have not input a valid number")
+                                setErrorMessage("You have not input a valid number.")
 
                             }
 
@@ -2086,14 +2084,14 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
                             setApproved(false)
                             setTimeForEstimates(false)
                             setValidBoolETH(false);
-                            console.log("total check");
+                        
 
                         }
                     }
 
                     else {
 
-                        setErrorMessage2("You have not input a valid number")
+                        setErrorMessage2("You have not input a valid number.")
                         setETHChecked(false);
                         setETH(BigInt(0))
                         setValidBoolETH(false);
@@ -2130,14 +2128,13 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
             else {
 
-                setErrorMessage2("You have not input a number.");
+                setErrorMessage2("You have not input a valid number.");
                 setETH(BigInt(0))
                 setETHChecked(false);
                 setApproved(false)
                 setTimeForEstimates(false)
                 setValidBoolETH(false);
-                console.log("HERE.")
-
+               
 
 
             }
@@ -2223,7 +2220,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
         const lastCode = inputString[inputString.length - 1];
 
-        console.log("Last code:" + lastCode)
+  
 
         if (lastCode === "0") {
 
@@ -2338,7 +2335,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
                             if (!balanceBoolETH) {
 
-                                setErrorMessage2("You have not input a valid number")
+                                setErrorMessage2("You have not input a valid number.")
 
                             }
 
@@ -2346,7 +2343,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
                             if (!validBoolETH) {
 
-                                setErrorMessage2("You have not input a valid number")
+                                setErrorMessage2("You have not input a valid number.")
 
                             }
 
@@ -2365,7 +2362,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
                         }
 
                     } else {
-                        setErrorMessage("You have not input a valid number")
+                        setErrorMessage("You have not input a valid number.")
                         setStETHChecked(false);
                         setStETH(BigInt(0))
                         setIsReadyToApprove(false);
@@ -2482,8 +2479,9 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
             </div>
 
             <div className="buttonCont">
+            <button className="disconnect" onClick={onClickFunc}>Report Bug</button>
                 <button onClick={handleRead}>Read Me</button>
-                <button className="disconnect" onClick={onClickFunc}>Report Bug</button>
+                
 
             </div>
             <div className="wrapper">
@@ -2557,7 +2555,7 @@ function Main({ TOTAL1,   onClickFunc, onChildAction  }) {
 
 
                 </div>
-              { (account) && ( <div className="box">
+              { (account) && ( <div className="box" id="middleBox">
 
                     <h3>Trade your ETH and/or stETH</h3>
 
